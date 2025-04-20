@@ -84,7 +84,7 @@ export default function DTPViewPage() {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/admissions/students")
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/students`)
       setStudents(res.data)
     } catch (error) {
       console.error("Failed to fetch students:", error)
@@ -93,7 +93,7 @@ export default function DTPViewPage() {
 
   const fetchDtpData = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/dtp")
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/dtp`)
       setDtpData(res.data)
       setFilteredData(res.data)
     } catch (error) {
@@ -114,7 +114,7 @@ export default function DTPViewPage() {
 
   const handleScheduleDTP = async () => {
     try {
-      await axios.post("http://localhost:4000/api/dtp", newDTP)
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/dtp`, newDTP)
       toast({
         title: "DTP Scheduled",
         description: `DTP for ${newDTP.name} has been scheduled.`,

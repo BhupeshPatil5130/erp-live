@@ -35,7 +35,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/profile", {
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -88,7 +88,7 @@ export default function ProfilePage() {
 
   const handleSaveChanges = () => {
     axios
-      .put("http://localhost:4000/api/profile", formData, {
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, formData, {
         withCredentials: true,
       })
       .then(() => {

@@ -66,7 +66,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchAdmissionChartData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/admissions/admission-stats")
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/admission-stats`)
         setDashboardData((prev: any) => ({
           ...prev,
           charts: {
@@ -82,13 +82,11 @@ export default function DashboardPage() {
     const fetchData = async () => {
       try {
         const [enquiryRes, userRes, lsqRes, admissionRes, chartRes] = await Promise.all([
-          axios.get("http://localhost:4000/api/enquiries/count"),
-          axios.get("http://localhost:4000/api/profile", { withCredentials: true }),
-          axios.get("http://localhost:4000/api/lsq-enquiries/count"),
-          axios.get("http://localhost:4000/api/admissions/count"),
-          axios.get("http://localhost:4000/api/enquiry-stats"),
-
-
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/enquiries/count`),
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, { withCredentials: true }),
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries/count`),
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/count`),
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/enquiry-stats`),
         ])
 
         if (enquiryRes?.data?.count !== undefined) setEnquiryCount(enquiryRes.data.count)

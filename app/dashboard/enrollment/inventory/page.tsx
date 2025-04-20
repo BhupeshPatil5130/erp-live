@@ -67,7 +67,7 @@ export default function InventoryPage() {
 
   const fetchInventory = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/inventory")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inventory`)
       const data = await res.json()
       setInventoryItems(data)
       setFilteredInventory(data)
@@ -78,7 +78,7 @@ export default function InventoryPage() {
 
   const fetchPurchaseOrders = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/purchase-orders")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-orders`)
       const data = await res.json()
       setPurchaseOrders(data)
       setFilteredPO(data)
@@ -89,7 +89,7 @@ export default function InventoryPage() {
 
   const handleAddItem = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/inventory", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/inventory`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +113,7 @@ export default function InventoryPage() {
 
   const handleAddPO = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/purchase-orders", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

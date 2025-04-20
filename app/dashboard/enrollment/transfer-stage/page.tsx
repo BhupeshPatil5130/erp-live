@@ -50,7 +50,7 @@ export default function TransferStagePage() {
 
   const handleAddTransfer = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/transfers", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTransfer),
@@ -66,7 +66,7 @@ export default function TransferStagePage() {
   }
   const handleEditTransfer = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/transfers/${selectedTransfer._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers/${selectedTransfer._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(selectedTransfer),
@@ -81,7 +81,7 @@ export default function TransferStagePage() {
   }
   const handleDeleteTransfer = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/transfers/${selectedTransfer._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers/${selectedTransfer._id}`, {
         method: "DELETE"
       })
       if (!res.ok) throw new Error("Failed to delete transfer request")
@@ -94,7 +94,7 @@ export default function TransferStagePage() {
   }
   const handleApproveTransfer = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/transfers/${selectedTransfer._id}/approve`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers/${selectedTransfer._id}/approve`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notes: selectedTransfer.notes }),
@@ -109,7 +109,7 @@ export default function TransferStagePage() {
   } 
   const handleRejectTransfer = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/transfers/${selectedTransfer._id}/reject`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers/${selectedTransfer._id}/reject`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notes: selectedTransfer.notes }),
@@ -124,7 +124,7 @@ export default function TransferStagePage() {
   }
   const fetchTransfers = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/transfers")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/transfers`)
       const data = await res.json()
       setTransferData(data)
       setFilteredData(data)

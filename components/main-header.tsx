@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { useEffect, useState } from "react"
@@ -22,7 +20,7 @@ export function MainHeader() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/profile", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, {
           withCredentials: true,
         })
         setUserName(res.data.name)

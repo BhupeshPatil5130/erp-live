@@ -67,7 +67,7 @@ export default function LSQEnquiryPage() {
 
   const fetchLsqEnquiries = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/lsq-enquiries")
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries`)
       setLsqData(res.data)
       setFilteredData(res.data)
     } catch (err) {
@@ -96,7 +96,7 @@ export default function LSQEnquiryPage() {
 
   const handleAddEnquiry = async () => {
     try {
-      await axios.post("http://localhost:4000/api/lsq-enquiries", newEnquiry)
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries`, newEnquiry)
       toast({
         title: "LSQ Enquiry Added",
         description: `New LSQ enquiry for ${newEnquiry.name} has been created successfully.`,
@@ -115,7 +115,7 @@ export default function LSQEnquiryPage() {
 
   const handleEditEnquiry = async () => {
     try {
-      await axios.put(`http://localhost:4000/api/lsq-enquiries/${selectedEnquiry._id}`, selectedEnquiry)
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries/${selectedEnquiry._id}`, selectedEnquiry)
       toast({ title: "Updated", description: `Updated ${selectedEnquiry.name}` })
       fetchLsqEnquiries()
       setIsEditDialogOpen(false)
@@ -126,7 +126,7 @@ export default function LSQEnquiryPage() {
   
   const handleDeleteEnquiry = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/lsq-enquiries/${selectedEnquiry._id}`)
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries/${selectedEnquiry._id}`)
       toast({ title: "Deleted", description: `Deleted ${selectedEnquiry.name}` })
       fetchLsqEnquiries()
       setIsDeleteDialogOpen(false)
@@ -138,7 +138,7 @@ export default function LSQEnquiryPage() {
 
   const handleFollowUp = async () => {
     try {
-      await axios.put(`http://localhost:4000/api/lsq-enquiries/${selectedEnquiry._id}`, {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries/${selectedEnquiry._id}`, {
         status: selectedEnquiry.status,
         notes: selectedEnquiry.notes,
       })
@@ -160,7 +160,7 @@ export default function LSQEnquiryPage() {
   }
   const handleConvertToAdmission = async (enquiry: any) => {
     try {
-      await axios.put(`http://localhost:4000/api/lsq-enquiries/${enquiry._id}`, {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/lsq-enquiries/${enquiry._id}`, {
         status: "Converted",
       })
   

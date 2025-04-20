@@ -70,7 +70,7 @@ export default function AdmissionPage() {
 
   const fetchAdmissions = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/admissions", { credentials: "include" })
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions`, { credentials: "include" })
       const data = await res.json()
       setAdmissionData(data)
       setFilteredData(data)
@@ -110,7 +110,7 @@ export default function AdmissionPage() {
       const date = new Date().toISOString().split("T")[0]
       const body = { ...newAdmission, id: newId, studentId, date, status: "Pending", feeStatus: "Pending" }
 
-      await fetch("http://localhost:4000/api/admissions", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -128,7 +128,7 @@ export default function AdmissionPage() {
 
   const handleEditAdmission = async () => {
     try {
-      await fetch(`http://localhost:4000/api/admissions/${selectedAdmission._id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/${selectedAdmission._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(selectedAdmission),
@@ -145,7 +145,7 @@ export default function AdmissionPage() {
 
   const handleDeleteAdmission = async () => {
     try {
-      await fetch(`http://localhost:4000/api/admissions/${selectedAdmission._id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/${selectedAdmission._id}`, {
         method: "DELETE",
         credentials: "include",
       })
@@ -160,7 +160,7 @@ export default function AdmissionPage() {
 
   const handleApproveAdmission = async () => {
     try {
-      await fetch(`http://localhost:4000/api/admissions/${selectedAdmission._id}/approve`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/${selectedAdmission._id}/approve`, {
         method: "POST",
         credentials: "include",
       })
@@ -175,7 +175,7 @@ export default function AdmissionPage() {
 
   const handleDocumentUpload = async () => {
     try {
-      await fetch(`http://localhost:4000/api/admissions/${selectedAdmission._id}/documents`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/${selectedAdmission._id}/documents`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ documents: selectedAdmission.documents }),

@@ -47,7 +47,7 @@ export default function StaffDetailsPage() {
   const fetchStaff = async () => {
     setLoading(true)
     try {
-      const res = await fetch("http://localhost:4000/api/staff")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/staff`)
       if (!res.ok) throw new Error("Failed to fetch staff data")
       const data = await res.json()
       setStaffList(data)
@@ -106,7 +106,7 @@ export default function StaffDetailsPage() {
 
   const confirmDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/staff/${selectedStaff._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/staff/${selectedStaff._id}`, {
         method: "DELETE",
       })
       if (!res.ok) throw new Error("Failed to delete staff")
@@ -120,7 +120,7 @@ export default function StaffDetailsPage() {
 
   const saveEditedStaff = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/staff/${selectedStaff._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/staff/${selectedStaff._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(selectedStaff),
@@ -136,7 +136,7 @@ export default function StaffDetailsPage() {
 
   const handleAddStaff = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/staff", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/staff`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newStaff),

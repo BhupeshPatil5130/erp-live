@@ -70,7 +70,7 @@ export default function NewEnquiryPage() {
       const fullEmail = formData.email + formData.emailDomain
       const enquiryData = { ...formData, email: fullEmail }
 
-      const response = await axios.post("http://localhost:4000/api/enquiries", enquiryData, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/enquiries`, enquiryData, {
         withCredentials: true,
       })
 

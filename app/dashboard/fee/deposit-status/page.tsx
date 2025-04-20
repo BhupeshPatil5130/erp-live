@@ -18,7 +18,7 @@ export default function DepositStatusPage() {
 
   const fetchDeposits = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/deposits")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/deposits`)
       const data = await res.json()
       setDepositData(data)
       setFilteredData(data)

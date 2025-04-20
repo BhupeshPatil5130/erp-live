@@ -30,7 +30,7 @@ export default function AdmissionStatusPage() {
   useEffect(() => {
     const fetchAdmissionData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/admissions")
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions`)
         setAdmissionData(response.data)
         setFilteredData(response.data)
       } catch (error) {
@@ -277,9 +277,9 @@ export default function AdmissionStatusPage() {
             <Button
               onClick={async () => {
                 try {
-                  await axios.put(`http://localhost:4000/api/admissions/${selectedAdmission.id}`, selectedAdmission)
+                  await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions/${selectedAdmission.id}`, selectedAdmission)
                   setIsEditOpen(false)
-                  const res = await axios.get("http://localhost:4000/api/admissions")
+                  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions`)
                   setAdmissionData(res.data)
                   setFilteredData(res.data)
                 } catch (err) {

@@ -149,7 +149,7 @@ const enquiryData = [
 // Enquiry API functions
 export const getEnquiries = async () => {
   try {
-    const res = await fetch("http://localhost:4000/api/enquiries", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enquiries`, {
       credentials: "include",
     })
     const data = await res.json()
@@ -166,7 +166,7 @@ export const getEnquiries = async () => {
 }
 export const getEnquiryCount = async () => {
   try {
-    const res = await fetch("http://localhost:4000/api/enquiries", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enquiries`, {
       credentials: "include",
     })
     const data = await res.json()
