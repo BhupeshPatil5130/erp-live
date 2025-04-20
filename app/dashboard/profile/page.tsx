@@ -55,8 +55,8 @@ export default function ProfilePage() {
         })
       })
       .catch((err) => {
-        // console.error("User not logged in", err)
-        // router.push("/login")
+        console.error("User not logged in", err)
+        router.push("/login")
       })
       .finally(() => setLoading(false))
   }, [router])
